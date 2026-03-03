@@ -1,15 +1,12 @@
-from .currency import Currency
-
-
 class MoneyCalculator:
     @staticmethod
-    def add(amount: float, currency: Currency, amount2: float) -> float:
-        return float(amount + amount2)
+    def add(amount1: float,  amount2: float) -> float:
+        return amount1 + amount2
     
     @staticmethod
-    def times(amount: float, currency: Currency, value: int) -> float:
+    def times(amount: float,  value: int) -> float:
         return amount * value
     
     @staticmethod
-    def divide(amount: float, currency: Currency, value: int) -> float:
+    def divide(amount: float,  value: int) -> float:
         return amount / value
