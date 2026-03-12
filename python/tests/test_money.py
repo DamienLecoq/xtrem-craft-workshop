@@ -6,7 +6,7 @@ class TestMoney:
         assert MoneyCalculator.add(5, 10) == 15.0
 
     def test_multiply_in_usd_returns_positive_number(self):
-        assert MoneyCalculator.times(10, 2) > 0
+        assert MoneyCalculator.times(10, 2) == 20.0
 
     def test_divide_in_usd_returns_value(self):
         assert MoneyCalculator.divide(4002, 4) == 1000.5
