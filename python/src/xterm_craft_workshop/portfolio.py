@@ -1,6 +1,6 @@
 from typing import Dict
-from .currency import Currency
-from .bank import Bank
+from xterm_craft_workshop.currency import Currency
+from xterm_craft_workshop.bank import Bank
 
 class Portfolio:
 
