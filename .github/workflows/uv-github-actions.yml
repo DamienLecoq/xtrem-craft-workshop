@@ -6,12 +6,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: cd python
       - run: uv sync
 
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: cd python
       - run: uv sync
       - run: uv run task test
@@ -19,6 +21,7 @@ jobs:
   mutation-test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: cd python
       - run: uv sync
       - run: uv run mutmut run
