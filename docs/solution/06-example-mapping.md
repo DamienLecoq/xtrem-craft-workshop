@@ -17,6 +17,8 @@ Exemple: (post-it vert)
 
 Vous pouvez également joindre une photo du résultat obtenu en utilisant les post-its.
 
+![Alt text](../../2025-2026-S6B-ALT%20-%20Groupe%20de.jpg)
+
 ## Évaluation d'un portefeuille
 
 
