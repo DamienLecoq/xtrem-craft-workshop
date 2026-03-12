@@ -1,0 +1,24 @@
+name: uv-github-actions
+run-name: ${{ github.actor }} runs uv-github-actions
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: cd ../python
+      - run: uv sync
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: cd ../python
+      - run: uv sync
+      - run: uv run task test
+
+  mutation-test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: cd ../python
+      - run: uv sync
+      - run: uv run mutmut run
