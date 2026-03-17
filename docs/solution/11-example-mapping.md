@@ -40,6 +40,7 @@ I want to convert a given amount in currency into another currency
 So it can be used to evaluate client portfolios
 ```
 
+![Alt text](../../2025-2026-S6B-ALT-Groupe_Damien_Mathieu_Isa_Yohan.png)
 
 
 
