@@ -19,11 +19,12 @@ class Bank:
     def addExchangeRate(self, fromCurrency: Currency, toCurrency: Currency, rate: float) -> None:
         self._exchange_rate[f'{fromCurrency.value}->{toCurrency.value}'] = rate
 
-    def convert(self, amount : float = None, fromCurrency : Currency = None, toCurrency: Currency = None, money = None) -> float:
-        if money is None:
-            money = Money(amount = amount, fromCurrency = fromCurrency)
+    def convert(self, money: Money, toCurrency: Currency) -> float:
         fromCurrency = money.getCurrency()
         amount = money.getMoney()
         if not (fromCurrency.value == toCurrency.value or f'{fromCurrency.value}->{toCurrency.value}' in self._exchange_rate):
             raise MissingExchangeRateError(fromCurrency, toCurrency)
         return amount if fromCurrency.value == toCurrency.value  else amount * self._exchange_rate[f'{fromCurrency.value}->{toCurrency.value}']
+    
+    def convertNew(self, money: Money, toCurrency: Currency) -> Money:
+        return Money(self.convert(money, toCurrency), toCurrency)
