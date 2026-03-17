@@ -10,7 +10,7 @@ class Portfolio:
         if currency is not None and initMoney is not None:
             self.moneyList.append(Money(initMoney, currency))
 
-    def addMoney(self, money : Money) : 
+    def addMoney(self, money : Money): 
         self.moneyList.append(money)
 
     def getMoney(self):

@@ -37,16 +37,16 @@ class TestPortfolio:
 
     def test_evaluate_currency_same_currency_return_same_amount(self, bank: Bank):
         portfolio = Portfolio(Currency.EUR, 100)
-        assert portfolio.evaluateCurrency(bank, Currency.EUR) == [100.00]
+        assert portfolio.evaluateCurrency(bank, Currency.EUR) == [Money(100, Currency.EUR)]
 
     def test_evaluate_currency_convert_dest_currency(self, bank: Bank):
         portfolio = Portfolio(Currency.EUR, 10)
-        assert portfolio.evaluateCurrency(bank, Currency.USD) == [12.00]
+        assert portfolio.evaluateCurrency(bank, Currency.USD) == [Money(12, Currency.USD)]
 
     def test_evaluate_currency_after_add(self, bank: Bank):
         portfolio = Portfolio(Currency.EUR, 10)
         portfolio.addMoney(Money(10, Currency.EUR))
-        assert portfolio.evaluateCurrency(bank, Currency.USD) == [12.00, 12.00]
+        assert portfolio.evaluateCurrency(bank, Currency.USD) == [Money(12, Currency.USD), Money(12, Currency.USD)]
 
     def test_evaluate_currency_missing_rate_raises_exception(self, bank: Bank):
         portfolio = Portfolio(Currency.EUR, 10)

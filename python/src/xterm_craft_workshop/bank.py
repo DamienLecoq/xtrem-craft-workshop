@@ -24,7 +24,4 @@ class Bank:
         amount = money.getMoney()
         if not (fromCurrency.value == toCurrency.value or f'{fromCurrency.value}->{toCurrency.value}' in self._exchange_rate):
             raise MissingExchangeRateError(fromCurrency, toCurrency)
-        return amount if fromCurrency.value == toCurrency.value  else amount * self._exchange_rate[f'{fromCurrency.value}->{toCurrency.value}']
-    
-    def convertNew(self, money: Money, toCurrency: Currency) -> Money:
-        return Money(self.convert(money, toCurrency), toCurrency)
+        return Money(amount, toCurrency) if fromCurrency.value == toCurrency.value  else Money(amount * self._exchange_rate[f'{fromCurrency.value}->{toCurrency.value}'], toCurrency)
