@@ -41,3 +41,12 @@ class TestBank:
     def test_convert_from_currency_to_same_currency_returns_same_money(self, bank: Bank):
         money = Money(10, Currency.EUR)
         assert bank.convert(money, Currency.EUR) == money
+
+    # def test_convert_with_negative_money_amount_raises_value_error(self, bank: Bank):
+    #     money = Money(-10, Currency.EUR)
+    #     try :
+    #         bank.convert(money, Currency.USD)
+    #         assert False, "Expected ValueError to be raised"
+    #     except ValueError as error:
+    #         print(error)
+    #         assert str(error) == "Negative money amount is not possible"

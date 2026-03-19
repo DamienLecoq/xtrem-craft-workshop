@@ -2,6 +2,10 @@ from xterm_craft_workshop.currency import Currency
 
 class Money:
     def __init__(self, amount: float, currency: Currency):
+        if amount < 0:
+            raise ValueError("Negative money amount is not possible")
+        if currency == None:
+            raise ValueError("Currency must be provided")
         self.amount = amount
         self.currency = currency
 
