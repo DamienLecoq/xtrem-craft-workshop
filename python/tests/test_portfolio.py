@@ -5,22 +5,24 @@ from xterm_craft_workshop.currency import Currency
 from xterm_craft_workshop.missing_exchange_rate_error import MissingExchangeRateError
 from xterm_craft_workshop.portfolio import Portfolio
 from xterm_craft_workshop.money import Money
-
+from xterm_craft_workshop.bankBuilder import CreateBankBuilder
+from xterm_craft_workshop.portfolioBuilder import CreatePortfolioBuilder
 
 @pytest.fixture
 def bank() -> Bank:
-    return Bank.create(Currency.EUR, Currency.USD, 1.2)
+    return CreateBankBuilder().ABank().WithExchangeRate(Currency.EUR, Currency.USD,1.2).WithPivotCurrency(Currency.EUR).build()
+
 
 
 @pytest.fixture
 def eur_portfolio() -> Portfolio:
-    return Portfolio()
-
+    return CreatePortfolioBuilder().APortfolio().build()
+#.WithMoney(0,Currency.EUR)
 
 class TestPortfolio:
     def test_get_money_returns_initial_amount(self):
-        portfolio = Portfolio(Currency.EUR, 100)
         money = Money(100, Currency.EUR)
+        portfolio = CreatePortfolioBuilder().APortfolio().WithMoney(100,Currency.EUR).build()
         assert portfolio.getMoney() == [money]
 
     def test_get_money_returns_zero_when_init_with_zero(self, eur_portfolio: Portfolio):
