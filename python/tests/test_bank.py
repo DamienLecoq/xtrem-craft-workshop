@@ -5,6 +5,7 @@ from xterm_craft_workshop.currency import Currency
 from xterm_craft_workshop.missing_exchange_rate_error import MissingExchangeRateError
 from xterm_craft_workshop.money import Money
 from xterm_craft_workshop.bankBuilder import CreateBankBuilder
+from xterm_craft_workshop.exchangeRate import ExchangeRate
 
 @pytest.fixture
 def bank() -> Bank:
@@ -25,6 +26,6 @@ class TestBank:
 
     def test_convert_with_different_exchange_rate_returns_different_floats(self, bank: Bank):
         assert bank.convert(money = Money(10, Currency.EUR), toCurrency = Currency.USD) == Money(12, Currency.USD)
-
-        bank.addExchangeRate(Currency.EUR, Currency.USD, 1.3)
+        er = ExchangeRate( 1.3, Currency.EUR, Currency.USD)
+        bank.addExchangeRate(er)
         assert bank.convert(money = Money(10, Currency.EUR), toCurrency = Currency.USD) == Money(13, Currency.USD)
