@@ -29,3 +29,11 @@ class TestBank:
         er = ExchangeRate( 1.3, Currency.EUR, Currency.USD)
         bank.addExchangeRate(er)
         assert bank.convert(money = Money(10, Currency.EUR), toCurrency = Currency.USD) == Money(13, Currency.USD)
+
+    def test_add_exchange_rate_with_different_fromCurrency_than_pivot_currency(self, bank: Bank):
+        er = ExchangeRate( 1.3, Currency.USD, Currency.EUR)
+        try:
+            bank.addExchangeRate(er)
+            assert False, "Expected ValueError to be raised"
+        except ValueError as error:
+            assert str(error) == "Must exchange rate from the same currency as the Bank's Pivot Currency"
