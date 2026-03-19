@@ -26,6 +26,8 @@ class Bank:
         self._exchange_rate[f'{exchange_rate._from_currency.value}->{exchange_rate._to_currency.value}'] = exchange_rate._rate
 
     def convert(self, money: Money, toCurrency: Currency) -> Money:
+        if money.currency == toCurrency:
+            return money
         from_currency = money.getCurrency()
         amount = money.getMoney()
         if from_currency.value == toCurrency.value:
@@ -38,4 +40,6 @@ class Bank:
             rate_value = rate._rate
         else:
             rate_value = rate
+        
+        assert amount * rate_value >= 0, "Negative amount not possible"
         return Money(amount * rate_value, toCurrency)

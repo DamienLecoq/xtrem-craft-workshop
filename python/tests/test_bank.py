@@ -37,3 +37,7 @@ class TestBank:
             assert False, "Expected ValueError to be raised"
         except ValueError as error:
             assert str(error) == "Must exchange rate from the same currency as the Bank's Pivot Currency"
+
+    def test_convert_from_currency_to_same_currency_returns_same_money(self, bank: Bank):
+        money = Money(10, Currency.EUR)
+        assert bank.convert(money, Currency.EUR) == money
