@@ -3,11 +3,14 @@ from xterm_craft_workshop.bank import Bank
 from xterm_craft_workshop.money import Money  
 
 class CreateBankBuilder:
+    _exchange_rate: Dict[str, float] = {}
     def __init__(self, exchange_rate = {}):
         self._exchange_rate = {}
 
     def ABankCreation():
         return CreateBankBuilder()
+    
+ 
 
     
 
