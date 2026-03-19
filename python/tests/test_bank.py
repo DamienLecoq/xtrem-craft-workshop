@@ -12,13 +12,14 @@ def bank() -> Bank:
     #return Bank.create(Currency.EUR, Currency.USD, 1.2)
 
 
-@pytest.fixture
-def bank() -> Bank:
-    return Bank.create(Currency.EUR, Currency.USD, 1.2)
+# @pytest.fixture
+# def bank() -> Bank:
+#     return Bank.create(Currency.EUR, Currency.USD, 1.2)
 
 
 class TestBank:
     def test_convert_euro_to_usd(self, bank: Bank):
+        bank = CreateBankBuilder().ABank.WithExchangeRate(Currency.EUR, Currency.USD,1.2)
         assert bank.convert(money = Money(10, Currency.EUR), toCurrency = Currency.USD) == Money(12, Currency.USD)
 
     def test_convert_same_currency_returns_same_value(self, bank: Bank):
