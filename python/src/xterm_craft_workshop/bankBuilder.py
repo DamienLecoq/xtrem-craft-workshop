@@ -7,9 +7,12 @@ class CreateBankBuilder:
     def __init__(self, exchange_rate = {}):
         self._exchange_rate = {}
 
-    def ABankCreation():
+    def ABank():
         return CreateBankBuilder()
     
+    def WithExchangeRate(self, fromCurrency: Currency, toCurrency: Currency, rate: float) -> "CreateBankBuilder":
+        self._exchange_rate[f'{fromCurrency.value}->{toCurrency.value}'] = rate
+        return self
  
 
     
