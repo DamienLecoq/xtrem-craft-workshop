@@ -4,10 +4,12 @@ from xterm_craft_workshop.bank import Bank
 from xterm_craft_workshop.currency import Currency
 from xterm_craft_workshop.missing_exchange_rate_error import MissingExchangeRateError
 from xterm_craft_workshop.money import Money
+from xterm_craft_workshop.bankBuilder import BankBuilder
 
 @pytest.fixture
 def bank() -> Bank:
-    return Bank.create(Currency.EUR, Currency.USD, 1.2)
+    return bankBuilder
+    #return Bank.create(Currency.EUR, Currency.USD, 1.2)
 
 
 @pytest.fixture
