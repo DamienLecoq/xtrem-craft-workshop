@@ -5,7 +5,7 @@
 
 ```markdown
 ## Titre de l'US (post-it jaunes)
-As a Foreign Exchange Expert I want to be able to define a Pivot Currency So that I can express exchange rates based on it
+As a Foreign Exchange Expert I want to be able to define a Pivot CurrencySo that I can express exchange rates based on it
 
 > Question (post-it rouge)
 Comment définir le pivot currency ?
@@ -17,16 +17,20 @@ La devise pivot est unique + immuable
 On défini la devise pivot au moment de la création de bank
 
 Exemple: (post-it vert)
-Bank défini sans devise pivot => Exception
-Chgmt de devise pivot => Exception
-Pivot Curr = EUR
+When créer une banque sans devise pivot, Then Exception
+
+Given EUR est devise pivot, When je veux changer la devise pivot, Then pas possible car pas de méthode
+
+Given EUR & USD, When EUR est devise pivot, THEN EUR != USD
+
+When je créer une nouvelle banque avec devise pivot = EUR, Then new Bank.pivot == EUR
 
 - [ ] 5 USD + 10 EUR = 17 USD
 ```
 
 ```markdown
 ## Titre de l'US (post-it jaunes)
-As a Foreign Exchange Expert I want to add/update exchange rates by specifying: a multiplier rate and a currency So they can be used to evaluate client portfolios
+As a Foreign Exchange Expert I want to add/update exchange rates by specifying: a multiplier rate and a currencySo they can be used to evaluate client portfolios
 
 > Question (post-it rouge)
 Class TauxDeChange
@@ -41,37 +45,46 @@ On ne peux pas ajouter un taux pour la devise pivot de la Bank
 Vous pouvez également joindre une photo du résultat obtenu en utilisant les post-its.
 
 Exemple: (post-it vert)
-Si on add EUR ->USD = 1.15
-Alors 10EUR -> USD == 11.5 USD
-TdC sans taux => Exception
-TdC sans devise => Exception
-Si Bank.devise = EUR
-Bank.addTdC(EUR) => Exception
+Soit une Bank, avec DP de EUR, Si on add USD avec un TdC = 1.15, Alors 10EUR -> USD == 11.5 USD
+
+Given une banque, When veux changer / ajouter taux de change négatif, Then Exception
+
+When you define : TdC sans devise, Then you get :  Exception
+
+When you define : TdC sans taux, Then you get : Exception
+
+Given a Bank.devise = EUR, When Bank.addTdC(EUR), Then you get : Exception
 ```
 ```markdown
 ## Titre de l'US (post-it jaunes)
-As a Bank Consumer I want to convert a given amount in currency into another currency So it can be used to evaluate client portfolios
+As a Bank ConsumerI want to convert a given amount in currency into another currencySo it can be used to evaluate client portfolios
 
 > Question (post-it rouge)
 Non
 
 ### Règle Métier (post-it bleu)
-La Bank doit avoir les Currencies en q?
+La Bank doit avoir les Currencies dmd pour la conversion
 L'arrondi des conversion est à  10^-3
 Le résultat ne peut pas être négatif
 On peut convertir un TdC vers lui-même
+Round tripping : si je fais conversion entre devises, puis inverse, doit trouver le meme montant (%arrondi)
+Le montant à convertir ne peut pas être négatif
 
 Exemple: (post-it vert)
-si Bank n'a pas USD
-convert(EUR, USD) => Exception
+Given a Bank without TdC USD, When you try convert(EUR, USD), Then you get : Exception
+
+Given a Bank with a TdC EUR, When you try 2EUR -> EUR, Then it returns = 2
+
 1525.25 EUR => 1754,0375 USD
 On arrondi à 1754,04
-1754,04 USD =>
-1523,58 EUR
-EUR = 2
-EUR -> EUR = 2
+1754,04 USD => 1523,58 EUR
+
+Given a bank with Pivot = EUR and a TdC USD, When you try : 10EUR => USD = 11.5, Then you get : 11.5USD => EUR = 10
+
+Given a Bank with a TdC USD, When you try Bank.convert(-2, USD), Then you get : Exception
+
 ```
-![Alt text](../../2025-2026-S6B-ALT-Groupe_Damien_Mathieu_Isa_Yohan.png)
+![Alt text](../../Groupe_BEZIE,_CHABRIER_LECOQ_SAISINH.jpg)
 
 ## Story 1: Define Pivot Currency
 
