@@ -8,8 +8,7 @@ from xterm_craft_workshop.bankBuilder import CreateBankBuilder
 
 @pytest.fixture
 def bank() -> Bank:
-    return CreateBankBuilder().ABank().WithExchangeRate(Currency.EUR, Currency.USD,1.2).build()
-
+    return CreateBankBuilder().ABank().WithExchangeRate(Currency.EUR, Currency.USD,1.2).WithPivotCurrency(Currency.EUR).build()
 
 class TestBank:
     def test_convert_euro_to_usd(self, bank: Bank):

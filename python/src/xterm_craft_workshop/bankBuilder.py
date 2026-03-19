@@ -5,8 +5,11 @@ from typing import Dict
 
 class CreateBankBuilder:
     _exchange_rate: Dict[str, float] = {}
-    def __init__(self, exchange_rate = {}):
+    _pivot_currency: Currency = None
+    def __init__(self,pivot_currency : Currency = None, exchange_rate = {}):
         self._exchange_rate = exchange_rate
+        self._pivot_currency= pivot_currency
+        
 
     def ABank(self):
         return CreateBankBuilder()
@@ -16,7 +19,14 @@ class CreateBankBuilder:
         return self
     
     def build(self) -> "CreateBankBuilder":
-        return Bank(exchange_rate=self._exchange_rate)
+        return Bank(exchange_rate=self._exchange_rate, pivot_currency=self._pivot_currency)
+    
+    def WithPivotCurrency(self, pivot : Currency)-> "CreateBankBuilder":
+        if self._pivot_currency != None:
+            return self
+        self._pivot_currency = pivot
+        return self
+
 
  
 

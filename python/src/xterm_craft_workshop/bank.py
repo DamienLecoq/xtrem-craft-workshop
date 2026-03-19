@@ -6,8 +6,9 @@ from xterm_craft_workshop.money import Money
 class Bank:
     _exchange_rate: Dict[str, float] = {}
 
-    def __init__(self, exchange_rate = {}) -> None:
+    def __init__(self, exchange_rate = {}, pivot_currency: Currency = None) -> None:
         self._exchange_rate = exchange_rate
+        self._pivot_currency = pivot_currency
 
     @staticmethod
     def create(fromCurrency: Currency, toCurrency: Currency, rate: float) -> "Bank":
