@@ -1,6 +1,7 @@
 from xterm_craft_workshop.currency import Currency
 from xterm_craft_workshop.bank import Bank
 from xterm_craft_workshop.money import Money  
+from typing import Dict
 
 class CreateBankBuilder:
     _exchange_rate: Dict[str, float] = {}
